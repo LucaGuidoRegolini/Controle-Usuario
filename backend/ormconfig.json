@@ -1,0 +1,14 @@
+{
+  "name": "default",
+  "type": "sqlite",
+  "database": "./data/db.sq3",
+  "logging": false,
+  "entities": ["src/model/*.ts"],
+  "migrations": ["src/db/migration/**/*.ts"],
+  "subscribers": ["src/db/subscriber/**/*.ts"],
+  "cli": {
+    "entitiesDir": "src/model",
+    "migrationsDir": "src/db/migration",
+    "subscribersDir": "src/db/subscriber"
+  }
+}

@@ -1,0 +1,5 @@
+node_modules
+build
+*.sq3
+.env
+yarn.*

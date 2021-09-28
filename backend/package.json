@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production webpack",
+    "dev": "cross-env NODE_ENV=development webpack",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/lodash": "^4.14.175",
+    "nodemon": "^2.0.13",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3",
+    "webpack": "^5.55.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-node-externals": "^3.0.0",
+    "webpack-shell-plugin-next": "^2.2.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cross-env": "^7.0.3",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.2",
+    "typeorm": "^0.2.37"
+  }
+}
