@@ -8,25 +8,18 @@ import {
 import bcrypt from "bcryptjs";
 
 @Entity("admins")
-export class Admins {
+export class Admin {
   @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column("uuid", { unique: true })
-  uuid: string;
+  id!: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column({ unique: true })
-  email: string;
+  email!: string;
 
-  @Column({ select: false })
-  password: string;
-  @Column({ select: false })
-  passwordResetToken: string;
-  @Column({ select: false })
-  passwordResetExpires: Date;
+  @Column()
+  password!: string;
 
   @BeforeInsert()
   @BeforeUpdate()
@@ -34,3 +27,5 @@ export class Admins {
     this.password = bcrypt.hashSync(this.password, 10);
   }
 }
+
+export default Admin;

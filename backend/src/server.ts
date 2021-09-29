@@ -1,4 +1,3 @@
-import "dotenv-safe";
 import "reflect-metadata";
 import * as _ from "lodash";
 
