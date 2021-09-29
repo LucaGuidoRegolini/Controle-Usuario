@@ -28,7 +28,8 @@ export default class AdminController {
 
     const { email, password } = req.body;
 
-    const admin = await repository.findOne({ where: { email } });
+    const admin = await repository.findOne({ select: ["password"], where: { email } });
+
     if (!admin) throw new InvalidArgumentError("usuario inexistente");
 
     const isValidPassword = await bcrypt.compare(password, admin.password);
