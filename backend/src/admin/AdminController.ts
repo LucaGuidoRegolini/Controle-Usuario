@@ -33,14 +33,14 @@ export default class AdminController {
       where: { email },
     });
 
-    if (!admin) throw new InvalidArgumentError("usuario inexistente");
+    if (!admin) throw new InvalidArgumentError("user not found");
 
     const isValidPassword = await bcrypt.compare(password, admin.password);
-    if (!isValidPassword) throw new UnauthorizedError("senha invalida");
+    if (!isValidPassword) throw new UnauthorizedError("invalid password");
 
     if (process.env.SECRET) {
       const token = jwt.sign({ id: admin.id }, process.env.SECRET, { expiresIn: "20d" });
       return res.json({ name: admin.name, email: admin.email, token });
-    } else throw new InternalError("Error in jwt create");
+    } else throw new InternalError("error in jwt create");
   }
 }

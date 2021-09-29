@@ -10,11 +10,7 @@ export default {
       const token = bearerToken.split(" ")[1];
       jwt.verify(token, process.env.SECRET, (err, decoded) => {
         if (err) throw new UnauthorizedError("Invalid token");
-        if (decoded) {
-          console.log(decoded);
-          req.headers.id = decoded.id;
-          console.log(req.headers);
-        }
+        if (decoded) req.headers.id = decoded.id;
         next();
       });
     } else throw new UnauthorizedError("Invalid token!!");
