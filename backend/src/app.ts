@@ -12,6 +12,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(router);
-//app.use(errorHandler);
+app.use(errorHandler);
 
 export default app;

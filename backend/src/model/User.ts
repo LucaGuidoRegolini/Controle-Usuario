@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
 
+import Admin from "../model/Admin";
 @Entity("users")
 export class User {
   @PrimaryGeneratedColumn()
@@ -13,6 +14,9 @@ export class User {
 
   @Column({ select: false })
   password!: string;
+
+  @ManyToOne((type) => Admin, (users) => User, { eager: true, onDelete: "CASCADE" })
+  admin!: Admin;
 }
 
 export default User;

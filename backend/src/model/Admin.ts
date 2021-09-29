@@ -4,8 +4,11 @@ import {
   BeforeInsert,
   BeforeUpdate,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from "typeorm";
 import bcrypt from "bcryptjs";
+
+import User from "../model/User";
 
 @Entity("admins")
 export class Admin {
@@ -18,8 +21,11 @@ export class Admin {
   @Column({ unique: true })
   email!: string;
 
-  @Column()
+  @Column({ select: false })
   password!: string;
+
+  @OneToMany((type) => User, (admin) => Admin, { cascade: true })
+  users!: User[];
 
   @BeforeInsert()
   @BeforeUpdate()

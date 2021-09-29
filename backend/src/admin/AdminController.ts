@@ -28,7 +28,10 @@ export default class AdminController {
 
     const { email, password } = req.body;
 
-    const admin = await repository.findOne({ select: ["password"], where: { email } });
+    const admin = await repository.findOne({
+      select: ["password", "id"],
+      where: { email },
+    });
 
     if (!admin) throw new InvalidArgumentError("usuario inexistente");
 
