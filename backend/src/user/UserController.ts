@@ -143,7 +143,7 @@ export default class UserController {
     const user = await userRepository.findOne({ where: { id, admin } });
 
     if (user) {
-      const resp = await userRepository.delete({ id: Number(id) });
+      await userRepository.delete({ id: Number(id) });
       return res.status(202).json({});
     } else throw new UnauthorizedError("Unauthorized");
   }

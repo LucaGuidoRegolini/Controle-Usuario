@@ -37,12 +37,36 @@ export default class AdminController {
     const { name, email, password } = req.body;
     const adminExists = await repository.findOne({ where: { email } });
 
-    if (adminExists) throw new InvalidArgumentError("usuario existente");
+    if (adminExists) throw new InvalidArgumentError("user exist");
 
     const admin = await repository.create({ name, email, password });
 
     await repository.save(admin);
 
     return res.status(201).json({});
+  }
+
+  static async me(req: Request, res: Response) {
+    const repository = getRepository(Admin);
+
+    const { id: admin_id } = req.headers;
+    const admin = await repository.findOne({ where: { id: admin_id } });
+
+    if (!admin) throw new InvalidArgumentError("user not found");
+
+    return res.status(201).json({ admin });
+  }
+
+  static async delete(req: Request, res: Response) {
+    const adminRepository = getRepository(Admin);
+
+    const { id: admin_id } = req.headers;
+
+    const admin = await adminRepository.findOne({ where: { id: admin_id } });
+
+    if (admin) {
+      await adminRepository.delete({ id: Number(admin_id) });
+      return res.status(202).json({});
+    } else throw new UnauthorizedError("Unauthorized");
   }
 }
