@@ -12,7 +12,7 @@ export class User {
   @Column()
   nickname!: string;
 
-  @Column({ select: false })
+  @Column()
   password!: string;
 
   @ManyToOne((type) => Admin, (users) => User, { eager: true, onDelete: "CASCADE" })

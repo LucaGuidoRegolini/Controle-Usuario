@@ -8,21 +8,6 @@ import { InvalidArgumentError, UnauthorizedError, InternalError } from "../error
 import Admin from "../model/Admin";
 
 export default class AdminController {
-  static async create(req: Request, res: Response) {
-    const repository = getRepository(Admin);
-
-    const { name, email, password } = req.body;
-    const adminExists = await repository.findOne({ where: { email } });
-
-    if (adminExists) throw new InvalidArgumentError("usuario existente");
-
-    const admin = await repository.create({ name, email, password });
-
-    await repository.save(admin);
-
-    return res.status(201).json({});
-  }
-
   static async login(req: Request, res: Response) {
     const repository = getRepository(Admin);
 
@@ -39,8 +24,25 @@ export default class AdminController {
     if (!isValidPassword) throw new UnauthorizedError("invalid password");
 
     if (process.env.SECRET) {
-      const token = jwt.sign({ id: admin.id }, process.env.SECRET, { expiresIn: "20d" });
+      const token = jwt.sign({ id: admin.id, type: "admin" }, process.env.SECRET, {
+        expiresIn: "20d",
+      });
       return res.json({ name: admin.name, email: admin.email, token });
     } else throw new InternalError("error in jwt create");
+  }
+
+  static async create(req: Request, res: Response) {
+    const repository = getRepository(Admin);
+
+    const { name, email, password } = req.body;
+    const adminExists = await repository.findOne({ where: { email } });
+
+    if (adminExists) throw new InvalidArgumentError("usuario existente");
+
+    const admin = await repository.create({ name, email, password });
+
+    await repository.save(admin);
+
+    return res.status(201).json({});
   }
 }

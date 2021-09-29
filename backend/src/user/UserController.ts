@@ -1,12 +1,48 @@
 import { Request, Response } from "express";
 import { getRepository, Like } from "typeorm";
+import jwt from "jsonwebtoken";
 
-import { UnauthorizedError } from "../errors";
+import { UnauthorizedError, InvalidArgumentError, InternalError } from "../errors";
 
 import User from "../model/User";
 import Admin from "../model/Admin";
 
 export default class UserController {
+  static async login(req: Request, res: Response) {
+    const repository = getRepository(User);
+
+    const { name, password } = req.body;
+
+    const user = await repository.findOne({
+      select: ["password", "id", "name"],
+      where: { name },
+    });
+
+    if (!user) throw new InvalidArgumentError("user not found");
+
+    const isValidPassword = password == user.password;
+    if (!isValidPassword) throw new UnauthorizedError("invalid password");
+
+    if (process.env.SECRET) {
+      const token = jwt.sign({ id: user.id, type: "user" }, process.env.SECRET, {
+        expiresIn: "20d",
+      });
+      return res.json({ name: user.name, token });
+    } else throw new InternalError("error in jwt create");
+  }
+
+  static async me(req: Request, res: Response) {
+    const userRepository = getRepository(User);
+
+    const { id: user_id } = req.headers;
+
+    const user = await userRepository.findOne({ where: { id: user_id } });
+
+    if (!user) throw new UnauthorizedError("user not found");
+
+    return res.json(user);
+  }
+
   static async index(req: Request, res: Response) {
     const userRepository = getRepository(User);
     const adminRepository = getRepository(Admin);
