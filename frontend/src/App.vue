@@ -5,11 +5,9 @@
 </template>
 
 <script>
+document.title = "Controle de usuario";
 export default {
   name: "App",
-  components: {},
-  title: "Controle de usuario",
-  titleTemplate: "%s | Controle de usuario",
 };
 </script>
 

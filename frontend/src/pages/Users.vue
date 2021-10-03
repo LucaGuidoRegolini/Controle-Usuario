@@ -2,7 +2,7 @@
   <div>
     <Default>
       <b-container>
-        <Search />
+        <Search @search="searchTeste" />
         <UserCard v-for="user in users" :key="user.id" :user="user" />
         <addUser />
       </b-container>
@@ -37,6 +37,12 @@ export default {
   methods: {
     fildUsers() {
       backend.get("/users/").then((users) => {
+        this.users = users.data[0];
+      });
+    },
+
+    searchTeste(search) {
+      backend.get(`/users/?name=${search}`).then((users) => {
         this.users = users.data[0];
       });
     },
