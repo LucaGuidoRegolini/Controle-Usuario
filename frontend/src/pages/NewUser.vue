@@ -1,13 +1,23 @@
 <template>
   <div class="body">
-    <b-card title="Login" style="max-width: 25rem;" class="mx-auto center">
+    <b-card title="Criar administrador" style="max-width: 25rem;" class="mx-auto center">
       <b-form>
-        <b-form-group id="input-group-1" label="Email ou Nome:" label-for="input-1">
+        <b-form-group id="input-group-1" label="Nome:" label-for="input-1">
+          <b-form-input
+            id="input-1"
+            v-model="user.name"
+            type="email"
+            placeholder="Nome"
+            required
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group id="input-group-1" label="Email:" label-for="input-1">
           <b-form-input
             id="input-1"
             v-model="user.email"
             type="email"
-            placeholder="Email ou nome"
+            placeholder="Email"
             required
           ></b-form-input>
         </b-form-group>
@@ -30,15 +40,10 @@
             </template>
           </b-input-group>
         </b-form-group>
-        <b-button class="login button" variant="success" @click="loginAdmin()"
-          >Login</b-button
+        <b-button class="login button" variant="success" @click="createAdmin()"
+          >Criar</b-button
         >
-        <b-button
-          class="login button ms-2"
-          @click="$router.push({ name: 'register' })"
-        >
-          Registrar-se
-        </b-button>
+        <b-button class="login button ms-3" @click="returnLogin()">Retornar</b-button>
       </b-form>
     </b-card>
 
@@ -49,7 +54,7 @@
       @dismiss-count-down="countDownChanged"
       class="alert"
     >
-      Usuario não existe
+      Erro ao criar usuario
     </b-alert>
   </div>
 </template>
@@ -65,16 +70,19 @@ export default {
     };
   },
   methods: {
-    async loginAdmin() {
+    createAdmin() {
       this.$store
-        .dispatch("appLogin", this.user)
+        .dispatch("appCreateAdmin", this.user)
         .then(() => {
           this.user = {};
-          this.$router.push({ name: "HomePage" });
+          this.$router.push({ name: "login" });
         })
         .catch(() => {
           this.showAlert();
         });
+    },
+    returnLogin() {
+      (this.user = {}), this.$router.push({ name: "login" });
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;

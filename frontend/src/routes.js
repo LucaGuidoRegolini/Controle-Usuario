@@ -3,6 +3,9 @@ import VueRouter from "vue-router";
 
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
+import NewUser from "./pages/NewUser";
+import Users from "./pages/Users";
+import User from "./pages/User";
 
 import store from "./store";
 
@@ -16,6 +19,7 @@ const routes = [
     component: HomePage,
     menu: false,
   },
+
   {
     name: "login",
     title: "Login",
@@ -25,6 +29,50 @@ const routes = [
     meta: {
       public: true,
     },
+  },
+  {
+    name: "register",
+    title: "Register",
+    path: "/register",
+    component: NewUser,
+    menu: false,
+    meta: {
+      public: true,
+    },
+  },
+  {
+    name: "Users",
+    title: "Users",
+    path: "/users",
+    component: Users,
+    menu: false,
+    meta: {
+      admin: true,
+    },
+  },
+  {
+    name: "user",
+    title: "User",
+    path: "/user/:id",
+    component: User,
+    menu: false,
+    meta: {
+      admin: true,
+    },
+  },
+  {
+    name: "user",
+    title: "User",
+    path: "/user",
+    component: User,
+    menu: false,
+    meta: {
+      admin: true,
+    },
+  },
+  {
+    path: "/*",
+    component: HomePage,
   },
 ];
 
@@ -36,6 +84,10 @@ const router = new VueRouter({
 router.beforeEach((routeTo, routeFrom, next) => {
   if (!routeTo.meta.public && !store.state.backend.token) {
     return next({ name: "login" });
+  }
+
+  if (routeTo.meta.admin && store.state.backend.type != "admin") {
+    return next({ name: "HomePage" });
   }
   next();
 });

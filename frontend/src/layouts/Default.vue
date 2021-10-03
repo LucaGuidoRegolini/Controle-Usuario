@@ -2,28 +2,19 @@
   <div>
     <header>
       <b-navbar toggleable="sm" type="dark" id="navbar">
-        <b-navbar-brand class="ms-2">Equipamnetos</b-navbar-brand>
+        <router-link to="/" class="nav-link link">
+          Home Page
+        </router-link>
 
-        <b-navbar-nav>
-          <b-nav-item href="#" :disabled="true">Usuarios</b-nav-item>
-        </b-navbar-nav>
+        <router-link v-if="userType == 'admin'" to="/users" class="nav-link link">
+          Usuarios
+        </router-link>
 
         <div class="divider" />
 
-        <b-navbar-toggle target="nav-search"> </b-navbar-toggle>
-
-        <b-collapse id="nav-search" class="me-2 ms-2" is-nav>
-          <b-navbar-nav class="ml-20 ">
-            <b-form-input
-              size="sm"
-              class="me-2 mr-sm-2"
-              placeholder="Search"
-            ></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">
-              <b-icon icon="search" color="white" />
-            </b-button>
-          </b-navbar-nav>
-        </b-collapse>
+        <b-button size="sm" class="me-2 my-2 my-sm-0" @click="logout">
+          <b-icon icon="box-arrow-left" color="white"></b-icon>
+        </b-button>
       </b-navbar>
     </header>
 
@@ -79,7 +70,18 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters(["userType"]),
+  },
+  methods: {
+    logout() {
+      this.$store.commit("REMOVE_USER");
+      this.$router.push({ name: "login" });
+    },
+  },
+};
 </script>
 
 <style>
@@ -95,6 +97,8 @@ export default {};
 
 header {
   position: fixed;
+  top: 0;
+  z-index: 100;
   width: 100%;
 }
 
@@ -113,5 +117,6 @@ footer {
 
 .body {
   min-height: 100vh;
+  margin-top: 60px;
 }
 </style>

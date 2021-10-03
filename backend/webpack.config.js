@@ -7,7 +7,7 @@ console.log(NODE_ENV);
 
 module.exports = {
   entry: "./src/server.ts",
-  mode: NODE_ENV,
+  mode: "development",
   watch: NODE_ENV === "development",
   watchOptions: {
     ignored: /node_modules/,

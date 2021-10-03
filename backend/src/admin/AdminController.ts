@@ -54,7 +54,7 @@ export default class AdminController {
 
     if (!admin) throw new InvalidArgumentError("user not found");
 
-    return res.status(201).json({ admin });
+    return res.status(201).json(admin);
   }
 
   static async delete(req: Request, res: Response) {
