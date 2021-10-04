@@ -1,12 +1,12 @@
 # Resumo
 
-Projeto que usa typescript e node no seu backend, alem de tecnologias como webpack para maior otimização, e Vue em seu frontend, seguido de bibliotecas como Vuex e vue-routes.
+Projeto que usa typescript e node no seu backend, além de tecnologias como webpack para maior otimização, e Vue em seu frontend, seguido de bibliotecas como Vuex e vue-routes.
 
 # Instalação
 
 ### backend
 
-para usar o aplicativo basta fazer o dowload do repositorio, na pasta raiz, basta usar esses comandos
+para usar a API basta fazer o download do repositório, na pasta raiz, basta usar esses comandos
 
 ```cmd
 cd backend
@@ -14,7 +14,7 @@ npm i
 npm start
 ```
 
-é necessario ter o Node instalado, ao terminar o processo pode-se acessar a API em 
+é necessário ter o Node instalado, ao terminar o processo pode-se acessar a API em 
 
 http://localhost:3000/
 
@@ -22,7 +22,7 @@ http://localhost:3000/
 
 ### frontend
 
-para usar o aplicativo basta fazer o dowload do repositorio, na pasta raiz, basta usar esses comandos
+para usar o aplicativo basta fazer o download do repositório, na pasta raiz, basta usar esses comandos
 
 ```cmd
 cd frontend
@@ -30,7 +30,7 @@ npm i
 npm run serve
 ```
 
-é necessario ter o Node instalado, ao terminar o processo pode-se acessar a aplicação em 
+é necessário ter o Node instalado, ao terminar o processo pode-se acessar a aplicação em 
 
 http://localhost:8000/
 
@@ -48,7 +48,7 @@ Comandos para gerenciamento de usuários
 
 http://localhost:3000/users
 
-Cria um usuário, é necessário enviar o token no cabeçário
+Cria um usuário, é necessário enviar o token no cabeçario
 
 
 
@@ -70,7 +70,7 @@ Authorization: Bearer Token
 
 http://localhost:3000/users/:id
 
-Altera **nickname** e **password** do usuário, é necessário enviar o token no cabeçário
+Altera o **nickname** e **password** do usuário, é necessário enviar o token no cabeçario
 
 
 
@@ -89,7 +89,7 @@ Authorization: Bearer Token
 
 http://localhost:3000/users/:id
 
-Mostra os dados de um usuário, é necessário enviar o token no cabeçário
+Mostra os dados de um usuário, é necessário enviar o token no cabeçario
 
 
 
@@ -103,7 +103,7 @@ Authorization: Bearer Token
 
 http://localhost:3000/users/
 
-Lista usuários do administrador, pode usar o paramns **name** para filtrar os resultados, é necessário enviar o token no cabeçário
+Lista usuários do administrador, pode usar o paramns **name** para filtrar os resultados, é necessário enviar o token no cabeçario
 
 
 
@@ -113,7 +113,7 @@ Authorization: Bearer Token
 
 http://localhost:3000/users/:id
 
-Deleta um usuário, é necessário enviar o token no cabeçário
+Deleta um usuário, é necessário enviar o token no cabeçario
 
 
 
@@ -138,7 +138,7 @@ O usuário pode logar usando seu **name** e **password**, recebera o token de ac
 
 ### GET Me user
 
-Mostra os dado usuário logado, é necessário enviar o token de usuário no cabeçário
+Mostra os dado do usuário logado, é necessário enviar o token de usuário no cabeçario
 
 
 
@@ -148,7 +148,7 @@ Authorization:Bearer Token
 
 ## Admins
 
-Comandos para gerenciamento de adminstradores
+Comandos para gerenciamento de administradores
 
 
 
@@ -176,14 +176,6 @@ Faz o login do admin na aplicação, recebera o token de acesso
 
 
 
-Bodyraw (json)
-
-json
-
-
-
-
-
 ```
 {
   "email": "admin email",
@@ -195,7 +187,7 @@ json
 
 http://localhost:3000/admin/me
 
-Mostra os dado admin logado, é necessário enviar o token de usuário no cabeçário
+Mostra os dados do admin logado, é necessário enviar o token de usuário no cabeçario
 
 
 
@@ -205,7 +197,7 @@ Authorization: Bearer Token
 
 http://localhost:3000/admin/me
 
-Deleta os dado admin logado, é necessário enviar o token de usuário no cabeçário
+Deleta os dados do admin logado, é necessário enviar o token de usuário no cabeçario
 
 
 
