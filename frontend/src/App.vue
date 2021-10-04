@@ -5,9 +5,18 @@
 </template>
 
 <script>
-document.title = "Controle de usuario";
 export default {
   name: "App",
+  metaInfo: {
+    title: "Controle de usuario",
+    htmlAttrs: {
+      lang: "pt-br",
+    },
+    meta: [
+      { charset: "utf-8" },
+      { "http-equiv": "Content-Security-Policy", content: "upgrade-insecure-requests" },
+    ],
+  },
 };
 </script>
 

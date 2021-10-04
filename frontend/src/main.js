@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import VueMeta from "vue-meta";
 import store from "./store";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
@@ -14,6 +15,8 @@ Vue.config.productionTip = false;
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+
+Vue.use(VueMeta);
 
 new Vue({
   render: (h) => h(App),

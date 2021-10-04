@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import VueMeta from "vue-meta";
 
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
@@ -10,6 +11,7 @@ import User from "./pages/User";
 import store from "./store";
 
 Vue.use(VueRouter);
+Vue.use(VueMeta);
 
 const routes = [
   {
