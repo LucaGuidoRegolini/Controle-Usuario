@@ -2,6 +2,16 @@
 
 Projeto que usa typescript e node no seu backend, além de tecnologias como webpack para maior otimização, e Vue em seu frontend, seguido de bibliotecas como Vuex e vue-routes.
 
+
+
+# Aplicativo Online
+
+Link: https://controler-user.netlify.app/
+
+API: https://user-control-123aa.herokuapp.com/
+
+
+
 # Instalação
 
 ### backend
